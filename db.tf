@@ -5,7 +5,7 @@ module "database" {
   env                = "${var.env}"
   postgresql_user    = "camundaadmin"
   database_name      = "camunda"
-  postgresql_version = "10"
+  postgresql_version = "11"
   sku_name           = "GP_Gen5_2"
   sku_tier           = "GeneralPurpose"
   storage_mb         = "51200"
