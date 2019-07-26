@@ -10,6 +10,7 @@ module "database" {
   sku_tier           = "GeneralPurpose"
   storage_mb         = "51200"
   common_tags        = "${var.common_tags}"
+  subscription       = "${var.subscription}"
 }
 
 resource "azurerm_key_vault_secret" "postgres-user" {
