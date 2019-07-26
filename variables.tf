@@ -4,6 +4,8 @@ variable "common_tags" {
 
 variable "product" {}
 
+variable "subscription" {}
+
 variable "env" {}
 
 variable "location" {
