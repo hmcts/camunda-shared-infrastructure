@@ -23,6 +23,6 @@ variable "jenkins_AAD_objectId" {
 }
 
 variable "managed_identity_object_id" {
-  type = "string"
+  type    = "string"
   default = "52003d14-dc00-429a-a50a-be1e60436044"
 }
