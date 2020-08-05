@@ -1,6 +1,6 @@
 module "database" {
   source             = "git@github.com:hmcts/cnp-module-postgres?ref=master"
-  product            = var.product
+  product            = "hmcts-${var.product}"
   location           = var.location
   env                = var.env
   postgresql_user    = "camundaadmin"
