@@ -44,6 +44,11 @@ locals {
   vaultName = "${var.product}-${var.env}"
 }
 
+data "azurerm_key_vault" "key_vault" {
+  name                = "${var.product}-${var.env}"
+  resource_group_name = "${var.product}-${var.env}"
+}
+
 data "azurerm_log_analytics_workspace" "log_analytics" {
   name                = "hmcts-${var.subscription}"
   resource_group_name = "oms-automation"
@@ -51,27 +56,27 @@ data "azurerm_log_analytics_workspace" "log_analytics" {
 
 data "azurerm_key_vault_secret" "camunda_elastic_search_public_key" {
   name         = "${var.product}-ELASTIC-SEARCH-PUB-KEY"
-  key_vault_id = module.vault.key_vault_id
+  key_vault_id = data.azurerm_key_vault.key_vault.id
 }
 
 data "azurerm_key_vault_secret" "dynatrace_token" {
   name         = "dynatrace-token"
-  key_vault_id = module.vault.key_vault_id
+  key_vault_id = data.azurerm_key_vault.key_vault.id
 }
 
 resource "azurerm_key_vault_secret" "elastic_search_url_key_setting" {
   name         = "${var.product}-ELASTIC-SEARCH-URL"
   value        = module.elastic.loadbalancerManual
-  key_vault_id = module.vault.key_vault_id
+  key_vault_id = data.azurerm_key_vault.key_vault.id
 }
 
 resource "azurerm_key_vault_secret" "elastic_search_pwd_key_setting" {
   name         = "${var.product}-ELASTIC-SEARCH-PASSWORD"
   value        = module.elastic.elasticsearch_admin_password
-  key_vault_id = module.vault.key_vault_id
+  key_vault_id = data.azurerm_key_vault.key_vault.id
 }
 
 data "azurerm_key_vault_secret" "alerts_email" {
   name         = "alerts-email"
-  key_vault_id = module.vault.key_vault_id
+  key_vault_id = data.azurerm_key_vault.key_vault.id
 }
