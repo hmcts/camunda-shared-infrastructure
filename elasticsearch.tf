@@ -19,6 +19,7 @@ module "elastic" {
   env                           = var.env
   subscription                  = var.subscription
   common_tags                   = var.common_tags
+  vNetLoadBalancerIp            = local.vNetLoadBalancerIp
   dataNodesAreMasterEligible    = true
   vmDataNodeCount               = var.vmDataNodeCount
   vmSizeAllNodes                = var.vmSizeAllNodes
@@ -43,6 +44,19 @@ module "elastic" {
 locals {
   // Vault name
   vaultName = "${var.product}-${var.env}"
+  vNetLoadBalancerIp = cidrhost(data.azurerm_subnet.elastic-subnet.address_prefix, -3)
+
+}
+
+data "azurerm_virtual_network" "core_infra_vnet" {
+  name                = "core-infra-vnet-${var.env}"
+  resource_group_name = "core-infra-${var.env}"
+}
+
+data "azurerm_subnet" "elastic-subnet" {
+  name                 = "elasticsearch"
+  virtual_network_name = data.azurerm_virtual_network.core_infra_vnet.name
+  resource_group_name  = data.azurerm_virtual_network.core_infra_vnet.resource_group_name
 }
 
 data "azurerm_key_vault" "key_vault" {
