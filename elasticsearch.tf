@@ -43,7 +43,6 @@ module "elastic" {
 
 locals {
   // Vault name
-  vaultName = "${var.product}-${var.env}"
   vNetLoadBalancerIp = cidrhost(data.azurerm_subnet.elastic-subnet.address_prefix, -3)
 
 }
@@ -81,7 +80,7 @@ data "azurerm_key_vault_secret" "dynatrace_token" {
 
 resource "azurerm_key_vault_secret" "elastic_search_url_key_setting" {
   name         = "${var.product}-ELASTIC-SEARCH-URL"
-  value        = module.elastic.loadbalancerManual
+  value        = local.vNetLoadBalancerIp
   key_vault_id = data.azurerm_key_vault.key_vault.id
 }
 
