@@ -41,6 +41,10 @@ variable "storageAccountType" {
   default     = "Standard"
 }
 
-variable "dynatrace_instance" {}
+variable "dynatrace_instance" {
+  default     = ""
+}
 
-variable "dynatrace_hostgroup" {}
+variable "dynatrace_hostgroup" {
+  default     = ""
+}
