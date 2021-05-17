@@ -39,7 +39,7 @@ module "elastic" {
   enable_logstash     = false
   enable_kibana       = false
   alerts_email        = data.azurerm_key_vault_secret.alerts_email.value
-  esAdditionalYaml     = "action.auto_create_index: .security*,.monitoring*,.watches,.triggered_watches,.watcher-history*,.logstash_dead_letter,.ml*\nxpack.monitoring.collection.enabled: true\n"
+  esAdditionalYaml     = "action.auto_create_index: .security*,.monitoring*,.watches,.triggered_watches,.watcher-history*,.logstash_dead_letter,.ml*\nxpack.monitoring.collection.enabled: true\nindices.query.bool.max_clause_count: 5092\n"
 }
 
 locals {
