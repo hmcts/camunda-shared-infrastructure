@@ -12,7 +12,7 @@ provider "azurerm" {
 }
 
 module "elastic" {
-  source                        = "git@github.com:hmcts/cnp-module-elk.git?ref=7.11.1"
+  source                        = "git@github.com:hmcts/cnp-module-elk.git?ref=RDM-13038"
   vmHostNamePrefix                = "cmda-"
   product                       = var.product
   location                      = var.location
