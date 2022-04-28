@@ -12,7 +12,7 @@ provider "azurerm" {
 }
 
 module "elastic" {
-  source                        = "git@github.com:hmcts/cnp-module-elk.git?ref=RDM-13038"
+  source                        = "git@github.com:hmcts/cnp-module-elk.git?ref=7.11.1"
   vmHostNamePrefix                = "cmda-"
   product                       = var.product
   location                      = var.location
@@ -26,11 +26,11 @@ module "elastic" {
   storageAccountType            = var.storageAccountType
   vmDataDiskCount               = 1
   ssh_elastic_search_public_key = data.azurerm_key_vault_secret.camunda_elastic_search_public_key.value
-  # providers = {
-  #   azurerm           = azurerm
-  #   azurerm.mgmt      = azurerm.mgmt
-  #   azurerm.aks-infra = azurerm.aks-infra
-  # }
+  providers = {
+    azurerm           = azurerm
+    azurerm.mgmt      = azurerm.mgmt
+    azurerm.aks-infra = azurerm.aks-infra
+  }
   logAnalyticsId      = data.azurerm_log_analytics_workspace.log_analytics.workspace_id
   logAnalyticsKey     = data.azurerm_log_analytics_workspace.log_analytics.primary_shared_key
   dynatrace_instance  = var.dynatrace_instance
