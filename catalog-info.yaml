@@ -1,7 +1,7 @@
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: "camunda"
+  name: "camunda-shared-infrastructure"
   annotations:
     # This must match folder-name/job-name in Jenkins.
     jenkins.io/job-full-name: cft:HMCTS_a_to_c/camunda-shared-infrastructure
