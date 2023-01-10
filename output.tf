@@ -1,3 +1,3 @@
 output "commontags" {
-    value = module.elastic.common_tags
+    value = module.elastic.delete_commaon_tag_output
 }
