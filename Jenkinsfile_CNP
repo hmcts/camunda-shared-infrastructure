@@ -6,5 +6,6 @@ def product = "camunda"
 
 withInfraPipeline(product) {
    def branchesToSync = ['demo', 'perftest', 'ithc']
+   env.TF_LOG = DEBUG
    syncBranchesWithMaster(branchesToSync)
 }
