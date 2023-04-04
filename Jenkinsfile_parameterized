@@ -1,0 +1,10 @@
+#!groovy
+
+@Library('Infrastructure') _
+
+def productName = "camunda"
+def subscription = "sandbox"
+def environment = "sandbox"
+
+withParameterizedInfraPipeline(productName, environment, subscription) {
+}
