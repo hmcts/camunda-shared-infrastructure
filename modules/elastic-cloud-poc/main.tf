@@ -1,6 +1,8 @@
 locals {
-  vnet_rg_name           = var.business_area == "sds" ? "ss-${var.env}-network-rg" : "cft-${var.env}-network-rg"
-  vnet_name              = var.business_area == "sds" ? "ss-${var.env}-vnet" : "cft-${var.env}-vnet"
+  env = var.env == "sandbox" ? "sbox" : var.env
+
+  vnet_rg_name           = var.business_area == "sds" ? "ss-${var.env}-network-rg" : "cft-${local.env}-network-rg"
+  vnet_name              = var.business_area == "sds" ? "ss-${var.env}-vnet" : "cft-${local.env}-vnet"
 }
 
 resource "azurerm_resource_group" "this" {
