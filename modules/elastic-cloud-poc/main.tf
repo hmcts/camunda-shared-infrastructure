@@ -11,4 +11,6 @@ resource "azurerm_elastic_cloud_elasticsearch" "this" {
   location                    = azurerm_resource_group.this.location
   sku_name                    = "ess-monthly-consumption_Monthly"
   elastic_cloud_email_address = var.elastic_cloud_email_address
+
+  tags = var.common_tags
 }
