@@ -30,8 +30,6 @@ data "azurerm_subnet" "this" {
 }
 
 resource "azurerm_private_endpoint" "this" {
-  provider = azurerm.private_endpoints
-
   name                = "${var.product}-elastic-cloud-${var.env}"
   location            = var.location
   resource_group_name = azurerm_resource_group.this.name
