@@ -1,8 +1,8 @@
 locals {
   env = var.env == "sandbox" ? "sbox" : var.env
 
-  vnet_rg_name           = var.business_area == "sds" ? "ss-${var.env}-network-rg" : "cft-${local.env}-network-rg"
-  vnet_name              = var.business_area == "sds" ? "ss-${var.env}-vnet" : "cft-${local.env}-vnet"
+  vnet_rg_name = var.business_area == "sds" ? "ss-${var.env}-network-rg" : "cft-${local.env}-network-rg"
+  vnet_name    = var.business_area == "sds" ? "ss-${var.env}-vnet" : "cft-${local.env}-vnet"
 }
 
 resource "azurerm_resource_group" "this" {
@@ -38,13 +38,15 @@ resource "azurerm_private_endpoint" "this" {
   subnet_id           = data.azurerm_subnet.this.id
 
   private_service_connection {
-    name                           = "${var.product}-elastic-cloud"
+    name                              = "${var.product}-elastic-cloud"
     private_connection_resource_alias = "uksouth-prod-007-privatelink-service.98758729-06f7-438d-baaa-0cb63e737cdf.uksouth.azure.privatelinkservice"
-    is_manual_connection           = false
+    is_manual_connection              = true
   }
 
   private_dns_zone_group {
     name                 = "${var.product}-elastic-cloud"
-    private_dns_zone_ids = ["/subscriptions/1baf5470-1c3e-40d3-a6f7-74bfbce4b348/resourceGroups/core-infra-intsvc-rg/providers/Microsoft.Network/privateDnsZones/privatelink.uksouth.azure.elastic-cloud.com"]
+    private_dns_zone_ids = [
+      "/subscriptions/1baf5470-1c3e-40d3-a6f7-74bfbce4b348/resourceGroups/core-infra-intsvc-rg/providers/Microsoft.Network/privateDnsZones/privatelink.uksouth.azure.elastic-cloud.com"
+    ]
   }
 }
