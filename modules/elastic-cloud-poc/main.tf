@@ -3,6 +3,8 @@ locals {
 
   vnet_rg_name = var.business_area == "sds" ? "ss-${var.env}-network-rg" : "cft-${local.env}-network-rg"
   vnet_name    = var.business_area == "sds" ? "ss-${var.env}-vnet" : "cft-${local.env}-vnet"
+
+  private_endpoint_rg_name   = var.business_area == "sds" ? "ss-${var.env}-network-rg" : "cft-${local.env}-network-rg"
 }
 
 resource "azurerm_resource_group" "this" {
@@ -30,6 +32,8 @@ data "azurerm_subnet" "this" {
 }
 
 resource "azurerm_private_endpoint" "this" {
+  provider = azurerm.private_endpoint
+
   name                = "${var.product}-elastic-cloud-${var.env}"
   location            = var.location
   resource_group_name = azurerm_resource_group.this.name
