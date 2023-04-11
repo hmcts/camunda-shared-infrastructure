@@ -14,6 +14,10 @@ provider "azurerm" {
 module "elastic_cloud" {
   source = "./modules/elastic-cloud-poc"
 
+  providers = {
+    azurerm.private_endpoints = azurerm.private_endpoints
+  }
+
   product = var.product
   env = var.env
 
