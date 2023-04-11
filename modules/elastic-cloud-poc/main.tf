@@ -41,6 +41,7 @@ resource "azurerm_private_endpoint" "this" {
     name                              = "${var.product}-elastic-cloud"
     private_connection_resource_alias = "uksouth-prod-007-privatelink-service.98758729-06f7-438d-baaa-0cb63e737cdf.uksouth.azure.privatelinkservice"
     is_manual_connection              = true
+    request_message                   = "${var.product}-elastic-cloud"
   }
 
   private_dns_zone_group {
