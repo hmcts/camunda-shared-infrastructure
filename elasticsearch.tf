@@ -20,6 +20,7 @@ module "elastic_cloud" {
   elastic_cloud_email_address = "tim.jacomb@justice.gov.uk"
 
   common_tags = var.common_tags
+  business_area = "CFT"
 }
 
 #locals {

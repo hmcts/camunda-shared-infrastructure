@@ -16,3 +16,7 @@ variable "common_tags" {
 variable "elastic_cloud_email_address" {
   description = "Specifies the Email Address which should be associated with this Elasticsearch account. Changing this forces a new Elasticsearch to be created"
 }
+
+variable "business_area" {
+  description = "business_area name - sds or cft."
+}
