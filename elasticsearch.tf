@@ -11,16 +11,16 @@ provider "azurerm" {
   features {}
 }
 
-#module "elastic_cloud" {
-#  source = "./modules/elastic-cloud-poc"
-#
-#  product = var.product
-#  env = var.env
-#
-#  elastic_cloud_email_address = "tim.jacomb@justice.gov.uk"
-#
-#  common_tags = var.common_tags
-#}
+module "elastic_cloud" {
+  source = "./modules/elastic-cloud-poc"
+
+  product = var.product
+  env = var.env
+
+  elastic_cloud_email_address = "tim.jacomb@justice.gov.uk"
+
+  common_tags = var.common_tags
+}
 
 #locals {
 #  // Vault name
