@@ -1,6 +1,6 @@
 #!groovy
 
-@Library('Infrastructure@debug-var') _
+@Library('Infrastructure') _
 
 def productName = "camunda"
 def subscription = "sandbox"
