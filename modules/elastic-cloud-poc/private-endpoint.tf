@@ -1,0 +1,31 @@
+data "azurerm_subnet" "this" {
+  provider             = azurerm.private_endpoints
+  name                 = "private-endpoints"
+  resource_group_name  = local.vnet_rg_name
+  virtual_network_name = local.vnet_name
+}
+
+resource "azurerm_private_endpoint" "this" {
+  provider = azurerm.private_endpoints
+
+  name                = "${var.product}-elastic-cloud-${var.env}"
+  location            = var.location
+  resource_group_name = local.private_endpoint_rg_name
+  subnet_id           = data.azurerm_subnet.this.id
+
+  private_service_connection {
+    name                              = "${var.product}-elastic-cloud"
+    private_connection_resource_alias = "uksouth-prod-007-privatelink-service.98758729-06f7-438d-baaa-0cb63e737cdf.uksouth.azure.privatelinkservice"
+    is_manual_connection              = true
+    request_message                   = "${var.product}-elastic-cloud"
+  }
+
+  private_dns_zone_group {
+    name                 = "${var.product}-elastic-cloud"
+    private_dns_zone_ids = [
+      "/subscriptions/1baf5470-1c3e-40d3-a6f7-74bfbce4b348/resourceGroups/core-infra-intsvc-rg/providers/Microsoft.Network/privateDnsZones/privatelink.uksouth.azure.elastic-cloud.com"
+    ]
+  }
+
+  tags = var.common_tags
+}

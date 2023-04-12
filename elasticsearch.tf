@@ -27,6 +27,15 @@ module "elastic_cloud" {
   business_area = "CFT"
 }
 
+module "elastic_cloud_config" {
+  source = "./modules/elastic-cloud-config"
+  product = var.product
+  env    = var.env
+
+  # TODO make dynamic after https://github.com/hashicorp/terraform-provider-azurerm/issues/17011
+  private_endpoint_guid = "0a932889-c08e-459a-9c55-cef5f3c24d19"
+}
+
 #locals {
 #  // Vault name
 #  vNetLoadBalancerIp = cidrhost(data.azurerm_subnet.elastic-subnet.address_prefix, -3)
