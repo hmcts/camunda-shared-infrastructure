@@ -32,8 +32,7 @@ module "elastic_cloud_config" {
   product = var.product
   env    = var.env
 
-  # TODO make dynamic after https://github.com/hashicorp/terraform-provider-azurerm/issues/17011
-  private_endpoint_guid = "0a932889-c08e-459a-9c55-cef5f3c24d19"
+  private_endpoint_guid = module.elastic_cloud.private_endpoint_resource_guid
 }
 
 #locals {
