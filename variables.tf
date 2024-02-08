@@ -1,5 +1,5 @@
 variable "common_tags" {
-  type = map
+  type = map(string)
 }
 variable "product" {}
 
@@ -19,32 +19,4 @@ variable "tenant_id" {
 
 variable "jenkins_AAD_objectId" {
   description = "This is the ID of the Application you wish to give access to the Key Vault via the access policy"
-}
-
-variable "aks_subscription_id" {}
-
-variable "mgmt_subscription_id" {}
-
-variable "vmDataNodeCount" {
-  description = "number of data nodes"
-  type        = number
-  default     = 1
-}
-
-variable "vmSizeAllNodes" {
-  description = "vm size for all the cluster nodes"
-  default     = "Standard_D2s_v3"
-}
-
-variable "storageAccountType" {
-  description = "disk storage account type"
-  default     = "Standard"
-}
-
-variable "dynatrace_instance" {
-  default     = ""
-}
-
-variable "dynatrace_hostgroup" {
-  default     = ""
 }
